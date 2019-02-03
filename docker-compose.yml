@@ -1,0 +1,25 @@
+version: '3'
+services:
+  php-apache:
+    build:
+      context: .
+      dockerfile: ./docker-config/php7-apache/Dockerfile
+    ports:
+      - 80:80
+  
+  database:
+    image: mysql
+    volumes:
+      - db-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: craft
+      MYSQL_USER: craft
+      MYSQL_PASSWORD: example
+
+volumes:
+  db-data:
