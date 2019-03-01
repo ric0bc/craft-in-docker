@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev libpng-dev libzip-dev libbz2-dev \
         libssl-dev autoconf \
         libicu-dev \
-        libmagickwand-dev mysql-client\
+        libmagickwand-dev mysql-client \
+        curl vim zip \
         && \
         pecl install imagick-3.4.3 \
         && \
@@ -29,6 +30,9 @@ RUN echo "upload_max_filesize = 10M" > /usr/local/etc/php/php.ini && \
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf 
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN a2enmod rewrite
+RUN a2enmod actions
 
 COPY --chown=www-data:www-data ./src /var/www/html
 

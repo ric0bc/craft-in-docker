@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: ./docker-config/php7-apache/Dockerfile
+    volumes:
+      - "./src:/var/www/html"
     ports:
       - 80:80
   
