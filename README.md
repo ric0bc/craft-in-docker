@@ -7,7 +7,7 @@ The `src` directory is mounted into the container.
 ## Getting started
 
 1. Clone the repo
-2. `cd src`
+2. `mkdir src && cd src`
 3. `docker run --rm -v $(pwd):/app composer/composer create-project craftcms/craft .`
 4. `sudo chown -R $USER:$USER .`
 5. Change `.env` file
